@@ -242,7 +242,9 @@ int bang(int x) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-    return (((!!x<<31)>>31)&y) + (((!x<<31)>>31)&z);
+    
+    return ((~!!x+1)&y) +((~!x+1)&z);
+    //return (((!!x<<31)>>31)&y) + (((!x<<31)>>31)&z);
 }
 // Extra Credit: Rating: 4
 /*
