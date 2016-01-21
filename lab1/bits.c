@@ -168,6 +168,7 @@ int fitsBits(int x, int n) {
  *  Legal ops: ! ~ & ^ | + << >>
  *  Max ops: 10
  *  Rating: 2
+ *  !~x ()
  *  x>>31  ( 0, 0,-1)
  *  ~x>>31 (-1,-1, 0)
  *  !!x<<1 ( 1, 0, 1)
@@ -178,7 +179,9 @@ int fitsBits(int x, int n) {
  */
 int sign(int x) {
     // !!(x<<1) is to check nonzero but positive
-    return ((x >> 31) + (((~x) >> 31) & !!(x<<1)));
+    
+    return (!!x) + (x>>31<<1);
+    //return ((x >> 31) + (((~x) >> 31) & !!(x<<1)));
 }
 /* 
  * getByte - Extract byte n from word x
