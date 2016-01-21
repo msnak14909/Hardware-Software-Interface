@@ -254,10 +254,12 @@ int conditional(int x, int y, int z) {
  *   Rating: 4
  */
 int isPower2(int x) {
-    int mask = ~0;
-    // x + mask = x - 1
+    /* int mask = ~0; */
+    // x + mask = x - 1n
     // if x & x-1 => x not power of 2
     // !(x>>31) : check x is non negative
     // ~(!x) : if x is zero: 111...10 & 1 always be 0
-    return (!(x & (x + mask)) & (!(x >> 31)) & (~(!x)));
+    
+    return !(((x+~0)&x) | (x>>31) | !x);
+    /* return (!(x & (x + mask)) & (!(x >> 31)) & (~(!x))); */
 }
