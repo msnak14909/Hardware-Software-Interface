@@ -179,9 +179,17 @@ int fitsBits(int x, int n) {
  */
 int sign(int x) {
     // !!(x<<1) is to check nonzero but positive
-    
-    return (!!x) + (x>>31<<1);
+    return (~(!!(x&0x8000))+1)|(!!x);
+
+    //idea1:
+    //return (!!x) + (x>>31<<1);
+
+    //idea2:
     //return ((x >> 31) + (((~x) >> 31) & !!(x<<1)));
+
+    // the first my answer is idea2, and update to idea1,
+    // but the shifter behavior is different between ARM and Intel
+    // so, I'm update to this version which without shifter.
 }
 /* 
  * getByte - Extract byte n from word x
